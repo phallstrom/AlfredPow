@@ -42,43 +42,31 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>bash ./pow.sh {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>38150942-005E-4279-9972-36D71B72D979</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>46</integer>
+				<integer>63</integer>
 				<key>keyword</key>
 				<string>pow</string>
 				<key>runningsubtext</key>
 				<string>Reading current pow configuration...</string>
 				<key>script</key>
-				<string>read a1 a2 &lt;&lt;&lt; "{query}"
-
-#/usr/local/bin/growlnotify -m "={query}=$a1=$a2="
-
-echo '&lt;?xml version="1.0"?&gt;'
-echo '&lt;items&gt;'
-
-if [ "restart" = "$a1" ]
-then
-	echo '&lt;item uid="pow_restart_all" arg="restart" valid="yes" autocomplete="restart"&gt;&lt;title&gt;Restart Pow&lt;/title&gt;&lt;subtitle&gt;Restart Pow Itself&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;'
-
-
-	cd ~/.pow &amp;&amp; ls -d *"$a2"* | xargs -I % echo '&lt;item uid="pow_restart_%" arg="restart %" valid="yes" autocomplete="restart %"&gt;&lt;title&gt;%&lt;/title&gt;&lt;subtitle&gt;Restart %&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;'
-
-else
-
-	if [[ "restart" == *"$a1"* ]]
-	then
-		echo '&lt;item uid="pow_restart" arg="restart" valid="no" autocomplete="restart"&gt;&lt;title&gt;Restart Pow&lt;/title&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;'
-	fi
-
-
-	cd ~/.pow &amp;&amp; ls -d *"$a1"* | xargs -I % echo '&lt;item uid="pow_launch_%" arg="%" valid="yes" autocomplete="%"&gt;&lt;title&gt;%&lt;/title&gt;&lt;subtitle&gt;Launch %&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;'
-
-fi
-
-
-echo '&lt;/items&gt;'</string>
+				<string>bash ./pow.sh {query}</string>
 				<key>subtext</key>
 				<string>Manage Pow</string>
 				<key>title</key>
@@ -115,46 +103,6 @@ echo '&lt;/items&gt;'</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>A06BFEED-F02F-4B55-BD5D-F60AD651C061</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>46</integer>
-				<key>script</key>
-				<string>read a1 a2 &lt;&lt;&lt; "{query}"
-
-#/usr/local/bin/growlnotify -m "=ACTION={query}=$a1=$a2="
-
-if [ "restart" = "$a1" ]
-then
-	case "$a2" in
-	'')
-		touch ~/.pow/restart.txt
-		echo "is restarting..."
-		;;
-	*)
-		mkdir -p ~/.pow/$a2/tmp 2&gt; /dev/null
-		touch ~/.pow/$a2/tmp/restart.txt
-		echo "$a2 is restarting..."
- 		;;
-	esac
-	exit
-fi
-
-if [ -e "$HOME/.pow/$a1" ]
-then
-	open http://$a1.dev/
-fi
-
-</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>38150942-005E-4279-9972-36D71B72D979</string>
 		</dict>
 	</array>
 	<key>readme</key>
