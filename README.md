@@ -1,7 +1,6 @@
 # Alfred Workflow - Pow
 
 A workflow for [Alfred](http://www.alfredapp.com/) to manage [Pow](http://pow.cx) and your Pow applications.
-and optionally copy a specific result to the clipboard.
 
 ![Example 1](https://raw.github.com/phallstrom/AlfredPow/master/screenshots/1.png)
 
