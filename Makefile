@@ -1,7 +1,7 @@
 EXTENSION = Pow.alfredworkflow
 BUNDLEID = pjkh.pow
 VERSION = 1.0
-SOURCE_FILES = pow.sh action.sh icon.png info.plist
+SOURCE_FILES = pow.sh functions.sh icon.png info.plist
 PKG_FILES = $(SOURCE_FILES)
 
 WORKFLOW_DIR = $(HOME)/Library/Application Support/Alfred 2/Alfred.alfredpreferences/workflows
