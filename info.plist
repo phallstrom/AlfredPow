@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>pjkh.pow</string>
+	<key>connections</key>
+	<dict>
+		<key>38150942-005E-4279-9972-36D71B72D979</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A06BFEED-F02F-4B55-BD5D-F60AD651C061</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>8A4728AC-D434-497F-827D-B63F9D95E615</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>38150942-005E-4279-9972-36D71B72D979</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Philip Hallstrom</string>
+	<key>description</key>
+	<string>Pow management.</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Pow</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>46</integer>
+				<key>keyword</key>
+				<string>pow</string>
+				<key>runningsubtext</key>
+				<string>Reading current pow configuration...</string>
+				<key>script</key>
+				<string>read a1 a2 &lt;&lt;&lt; "{query}"
+
+#/usr/local/bin/growlnotify -m "={query}=$a1=$a2="
+
+echo '&lt;?xml version="1.0"?&gt;'
+echo '&lt;items&gt;'
+
+if [ "restart" = "$a1" ]
+then
+	echo '&lt;item uid="pow_restart_all" arg="restart" valid="yes" autocomplete="restart"&gt;&lt;title&gt;Restart Pow&lt;/title&gt;&lt;subtitle&gt;Restart Pow Itself&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;'
+
+
+	cd ~/.pow &amp;&amp; ls -d *"$a2"* | xargs -I % echo '&lt;item uid="pow_restart_%" arg="restart %" valid="yes" autocomplete="restart %"&gt;&lt;title&gt;%&lt;/title&gt;&lt;subtitle&gt;Restart %&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;'
+
+else
+
+	if [[ "restart" == *"$a1"* ]]
+	then
+		echo '&lt;item uid="pow_restart" arg="restart" valid="no" autocomplete="restart"&gt;&lt;title&gt;Restart Pow&lt;/title&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;'
+	fi
+
+
+	cd ~/.pow &amp;&amp; ls -d *"$a1"* | xargs -I % echo '&lt;item uid="pow_launch_%" arg="%" valid="yes" autocomplete="%"&gt;&lt;title&gt;%&lt;/title&gt;&lt;subtitle&gt;Launch %&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;'
+
+fi
+
+
+echo '&lt;/items&gt;'</string>
+				<key>subtext</key>
+				<string>Manage Pow</string>
+				<key>title</key>
+				<string>Pow</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>8A4728AC-D434-497F-827D-B63F9D95E615</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Pow</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>A06BFEED-F02F-4B55-BD5D-F60AD651C061</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>46</integer>
+				<key>script</key>
+				<string>read a1 a2 &lt;&lt;&lt; "{query}"
+
+#/usr/local/bin/growlnotify -m "=ACTION={query}=$a1=$a2="
+
+if [ "restart" = "$a1" ]
+then
+	case "$a2" in
+	'')
+		touch ~/.pow/restart.txt
+		echo "is restarting..."
+		;;
+	*)
+		mkdir -p ~/.pow/$a2/tmp 2&gt; /dev/null
+		touch ~/.pow/$a2/tmp/restart.txt
+		echo "$a2 is restarting..."
+ 		;;
+	esac
+	exit
+fi
+
+if [ -e "$HOME/.pow/$a1" ]
+then
+	open http://$a1.dev/
+fi
+
+</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>38150942-005E-4279-9972-36D71B72D979</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>For information on what Pow is see http://pow.cx/</string>
+	<key>uidata</key>
+	<dict>
+		<key>38150942-005E-4279-9972-36D71B72D979</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+		<key>8A4728AC-D434-497F-827D-B63F9D95E615</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+		<key>A06BFEED-F02F-4B55-BD5D-F60AD651C061</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
