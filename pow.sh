@@ -2,16 +2,18 @@
 
 source functions.sh
 
+#echo "$$=$1=$2=$3=" >> /tmp/output
+
 case "$1" in
   'action')
     case "$2" in
       'restart')
-        case "$2" in
+        case "$3" in
           '')
             restart_pow
             ;;
           *)
-            restart_pow_app $2
+            restart_pow_app $3
             ;;
         esac
         ;;
@@ -25,7 +27,7 @@ case "$1" in
     ;;
   'restart')
     echo_start_items
-    echo_item "pow_restart_pow" "action restart" "yes" "restart" "Restart Pow" "Restart Pow Itself" "icon.png"
+    [[ -z "$2" ]] && echo_item "pow_restart_pow" "action restart" "yes" "restart" "Restart Pow" "Restart Pow Itself" "icon.png"
     cd $POW_DIR
     for app in `ls -d *"$2"* 2>/dev/null`
     do
