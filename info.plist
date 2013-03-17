@@ -42,17 +42,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>script</key>
-				<string>bash ./pow.sh {query}</string>
-				<key>type</key>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
 				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Pow</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>38150942-005E-4279-9972-36D71B72D979</string>
+			<string>A06BFEED-F02F-4B55-BD5D-F60AD651C061</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -84,25 +92,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
+				<key>escaping</key>
+				<integer>62</integer>
+				<key>script</key>
+				<string>bash ./pow.sh {query}</string>
+				<key>type</key>
 				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Pow</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>A06BFEED-F02F-4B55-BD5D-F60AD651C061</string>
+			<string>38150942-005E-4279-9972-36D71B72D979</string>
 		</dict>
 	</array>
 	<key>readme</key>
