@@ -41,7 +41,7 @@ case "$1" in
     cd $POW_DIR
     for app in `ls -d *"$1"* 2>/dev/null`
     do
-      echo_item "pow_launch_$app" "action launch $app" "yes" "$app" "$app" "Luanch $app" "icon.png"
+      echo_item "pow_launch_$app" "action launch $app" "yes" "$app" "$app" "Launch $app" "icon.png"
     done
     echo_end_items
     ;;
