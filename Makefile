@@ -1,6 +1,6 @@
 EXTENSION = Pow.alfredworkflow
 BUNDLEID = pjkh.pow
-VERSION = 1.0
+VERSION = 1.0.1
 SOURCE_FILES = pow.sh functions.sh icon.png info.plist
 PKG_FILES = $(SOURCE_FILES)
 
