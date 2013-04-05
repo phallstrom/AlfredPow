@@ -15,7 +15,7 @@ function echo_item() { # uid, arg, valid, autocomplete, title, subtitle, icon
   echo "<item uid='$1' arg='$2' valid='$3' autocomplete='$4'>"
   echo "<title>$5</title>"
   echo "<subtitle>$6</subtitle>"
-  echo "<icon>$7</icon>"
+  echo "<icon>${7-icon.png}</icon>"
   echo "</item>"
 }
 
